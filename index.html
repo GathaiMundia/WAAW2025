@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Launch Program - World AMR Awareness Week (WAAW) 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* KNPHI Brand Colors (Derived from CSS variables for replication) */
+        :root {
+            --primary-color: #36459C;
+            --secondary-color: #8FC73E;
+            --text-color: #343A40;
+            --background-color: #FFFFFF;
+            --light-gray: #f8f9fa;
+            --font-size-base: 1rem;
+            --navbar-height-mobile: 60px;
+            --navbar-height-desktop: 80px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            line-height: 1.6;
+            padding-top: var(--navbar-height-mobile); /* Mobile First Padding */
+        }
+        
+        /* Mobile-First Adjustments */
+        @media (min-width: 768px) {
+            body {
+                padding-top: var(--navbar-height-desktop);
+            }
+        }
+        
+        h1, h2, h3, h4 { color: var(--primary-color); font-weight: 700; }
+        .lead { font-size: 1.125rem; font-weight: 400; color: #6c757d; }
+        
+        /* --- Navbar (Minimalist) --- */
+        .navbar { background-color: var(--primary-color) !important; padding: 0.75rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .navbar-brand { color: white; font-weight: 700; font-size: 1.5rem; }
+        /* Remove hamburger and collapse logic for ultra-minimal nav */
+        .navbar-toggler { display: none; }
+        .navbar-collapse { display: block !important; }
+        .navbar-nav { display: none; } 
+
+        /* --- Hero Section --- */
+        .waaw-hero {
+            /* KNPHI Blue to Green gradient for AMR theme */
+            background: linear-gradient(135deg, rgba(54, 69, 156, 0.9) 0%, rgba(143, 199, 62, 0.9) 100%);
+            color: white;
+            min-height: 50vh; /* Increased height to fit button space */
+            padding: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+        .waaw-hero .hero-title, .waaw-hero .hero-subtitle, .waaw-hero .lead {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .waaw-hero .hero-title { 
+            font-size: 1.8rem; 
+            margin-bottom: 0.5rem; 
+        }
+        .waaw-hero .hero-subtitle { 
+            font-size: 1.25rem; 
+            margin-bottom: 1rem; /* Space before button */
+        }
+        .waaw-hero .lead { 
+            font-size: 1rem; 
+            margin-bottom: 2rem;
+        }
+        
+        /* --- Hero Button Styling (Prominent CTA) --- */
+        .hero-cta {
+            margin-top: 1.5rem;
+            padding: 0 1rem; /* Mobile padding */
+        }
+        .btn-register {
+            /* KNPHI Secondary Green */
+            background-color: var(--secondary-color);
+            border-color: #6BA832;
+            color: white !important;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block; /* Full width on mobile */
+            width: 100%;
+            max-width: 400px; /* Max width on desktop */
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(143, 199, 62, 0.5); /* Green shadow */
+        }
+        .btn-register:hover {
+            background-color: #6BA832;
+            border-color: #6BA832;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(143, 199, 62, 0.6);
+        }
+
+        /* --- Agenda Container --- */
+        .section-padding { padding: 2rem 0; }
+        .waaw-agenda-container {
+            background-color: var(--background-color);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        .agenda-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+        
+        /* --- Program Entry Styles (Mobile First Grid) --- */
+        .program-entry {
+            display: grid;
+            grid-template-columns: 80px 1fr; /* Smaller time column for mobile */
+            gap: 15px;
+            padding: 1rem 0;
+            align-items: flex-start;
+            border-bottom: 1px solid #eee;
+        }
+        .program-entry:last-of-type { border-bottom: none; }
+        
+        .program-time {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            min-width: 70px;
+        }
+
+        .program-topic {
+            font-weight: 600;
+            color: var(--text-color);
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .session-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.25rem;
+        }
+        .session-presenter {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin-top: 0.25rem;
+            line-height: 1.3;
+        }
+
+        /* Break Entry */
+        .program-entry.break {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 0.5rem 0;
+            margin: 0.75rem 0;
+            background-color: rgba(143, 199, 62, 0.1);
+            border-radius: 6px;
+        }
+        .program-entry.break .session-tag.break {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        /* Document Launch List */
+        .document-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+        .document-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+            color: #495057;
+            margin-bottom: 0.1rem;
+        }
+        .document-list li::before {
+            content: "\f058"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Session Tag (Badge) Styling */
+        .session-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin-top: 0.75rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+        .session-tag.keynote { background: #ffc107; color: #333; }
+        .session-tag.official-launch { background: #dc3545; }
+        .session-tag.closing { background: #17a2b8; }
+        
+        /* Desktop Adjustments */
+        @media (min-width: 768px) {
+            .waaw-hero .hero-title { font-size: 3rem; }
+            .waaw-hero .hero-subtitle { font-size: 1.5rem; }
+            .waaw-hero { padding: 80px 0; }
+            .section-padding { padding: 3rem 0; }
+            .waaw-agenda-container { padding: 3rem; }
+            
+            .program-entry {
+                grid-template-columns: 140px 1fr;
+                gap: 20px;
+                padding: 1.5rem 0;
+            }
+            .program-time { font-size: 1rem; min-width: 120px; }
+            .session-title { font-size: 1.05rem; }
+            .session-presenter { font-size: 0.9rem; }
+            .document-list li { font-size: 0.95rem; }
+            
+            .hero-cta {
+                padding: 0;
+            }
+            .btn-register {
+                width: auto;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <span class="navbar-brand">WAAW 2025 Launch</span>
+        </div>
+    </nav>
+
+    <main id="program">
+        <section class="page-header waaw-hero text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h1 class="hero-title">World Antimicrobial Resistance Awareness Week (WAAW) 2025</h1>
+                        <h3 class="hero-subtitle">Official Launch Program</h3>
+                        <p class="lead mb-2">Theme: “Act Now: Protect The Present, Secure The Future.”</p>
+                        <p class="lead mb-0">Date: 18th November 2025 | Venue: GLEE Hotel, Nairobi</p>
+
+                        <div class="hero-cta">
+                            <a class="btn-register" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__pphHy5UOFcyTDRaRVg3TEE0UFJBRk9TUEQ4TVpGVS4u&origin=QRCode" target="_blank">
+                                <i class="fas fa-edit me-2"></i> Register Your Attendance
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="waaw-agenda-container">
+                            <div class="agenda-header text-center">
+                                <h2 class="h3 mb-1"><i class="fas fa-calendar-alt me-2"></i>Official Launch Agenda</h2>
+                                <p class="text-muted mb-0">Moderator: Fredrick Omiah/Dr. Mwanziki</p>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">07:30 – 08:00 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Arrival, Registration & Breakfast</span>
+                                    <span class="session-presenter">Facilitator/Speaker: All</span>
+                                </div>
+                            </div>
+                            
+                            <div class="program-entry">
+                                <div class="program-time">08:00 – 08:05 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Welcome Remarks</span>
+                                    <span class="session-presenter">Facilitator/Speaker: NASIC/Fleming Fund</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">08:05 - 08:30 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Kenya National Action Plan for AMR - Overview of Implementation</span>
+                                    <span class="session-presenter">Facilitator/Speaker: NASIC Secretariat</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">08:30 - 09:00 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Highlights of Fleming Fund Work in Kenya</span>
+                                    <span class="session-presenter">Facilitator/Speaker: Fleming Fund</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">09:00 - 09:20 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">AMR Policy Brief</span>
+                                    <span class="session-presenter">Facilitator/Speaker: Dr. Loice Ombajo</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">09:20 - 09:30 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Call to Action</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">09:30 - 10:00 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Opening Remarks</span>
+                                    <span class="session-presenter">Facilitator/Speaker: Sponsors, Quadripartite (WOAH,FAO,UNEP,WHO), Ag. DG NPHI</span>
+                                </div>
+                            </div>
+                            
+                            <div class="program-entry">
+                                <div class="program-time">10:00 – 10:30 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Official Remarks</span>
+                                    <span class="session-presenter">Facilitator/Speaker: County Executive Committee Members, Director of Veterinary Services (DVS), Director Kenya Fisheries Services, Director General NEMA, Director General Health, Principal Secretary, State Department of Public Health & Professional Standards</span>
+                                </div>
+                            </div>
+                            
+                            <div class="program-entry">
+                                <div class="program-time">10:30 – 10:50 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Keynote Address</span>
+                                    <span class="session-presenter">Facilitator/Speaker: Cabinet Secretary, Ministry of Health</span>
+                                    <span class="session-tag keynote">KEYNOTE ADDRESS</span>
+                                </div>
+                            </div>
+                            
+                            <div class="program-entry">
+                                <div class="program-time">10:50 - 11:00 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Official Launch of Strategic Documents</span>
+                                    <ul class="document-list">
+                                        <li>National AMR Report 2025</li>
+                                        <li>National AMR Surveillance Implementation Plan</li>
+                                        <li>Guidelines for Prudent Use of Antimicrobials in Animals</li>
+                                        <li>AMR Religious Leaders Guides</li>
+                                        <li>National AMS eLearning Modules</li>
+                                    </ul>
+                                    <span class="session-tag official-launch">DOCUMENT LAUNCH</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">10:50 - 11:00 AM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Photo Session</span>
+                                    <span class="session-presenter">Facilitator/Speaker: All</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry break">
+                                <span class="session-tag break">11:00 – 11:30 AM | Health Break</span>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">12:00 – 12:30 PM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Highlights of National AMR Dashboard</span>
+                                    <span class="session-presenter">Facilitator/Speaker: UoN/CEMA</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry">
+                                <div class="program-time">12:30 – 12:45 PM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Award of Trophies to Winners</span>
+                                    <span class="session-presenter">Facilitator/Speaker: Youth S/Committee</span>
+                                </div>
+                            </div>
+                            
+                            <div class="program-entry">
+                                <div class="program-time">12:45 – 01:00 PM</div>
+                                <div class="program-topic">
+                                    <span class="session-title">Closing Remarks</span>
+                                    <span class="session-presenter">Facilitator/Speaker: NASIC</span>
+                                    <span class="session-tag closing">CLOSING REMARKS</span>
+                                </div>
+                            </div>
+
+                            <div class="program-entry break">
+                                <span class="session-tag break">01:00 – 02:00 PM | LUNCH BREAK</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
